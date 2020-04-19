@@ -31,16 +31,20 @@ namespace s4_tp
                     base.WndProc(ref m);
                     return;
                 }
-                var dlg_res = MessageBox.Show("Save file?", APP_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-                if (dlg_res == DialogResult.OK)
+                var dlg_result = MessageBox.Show("Save file?", APP_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                switch (dlg_result)
                 {
-                    Save(fileName);
-                    isFileSaved = true;
-                }
-                else
-                {
-                    base.WndProc(ref m);
-                    return;
+                    case DialogResult.Yes:
+                        Save(fileName);
+                        isFileSaved = true;
+                        break;
+                    case DialogResult.No:
+                        break;
+                    case DialogResult.Cancel:
+                        return;
+                    // If messagebox was closed
+                    default:
+                        return;
                 }
             }
             base.WndProc(ref m);
@@ -150,17 +154,17 @@ namespace s4_tp
             }
         }
 
+        private void TsmiTextColor_Click(object sender, EventArgs e)
+        {
+            if (cdTextColor.ShowDialog() == DialogResult.OK)
+            {
+                tb.ForeColor = cdTextColor.Color;
+            }
+        }
+
         private void Open_tsmi_Click(object sender, EventArgs e)
         {
             Open_ofd.ShowDialog();
-        }
-
-        private void TsmiTextColor_Click(object sender, EventArgs e)
-        {
-            if (cdTextColor.ShowDialog() == DialogResult.Cancel)
-                return;
-
-            tb.ForeColor = cdTextColor.Color;
         }
 
         private void Open_ofd_FileOk(object sender, System.ComponentModel.CancelEventArgs e)

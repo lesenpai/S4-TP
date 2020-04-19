@@ -12,7 +12,7 @@ namespace s4_tp
 
 		private void ShowFormX_btn_Click(object sender, EventArgs e)
 		{
-			switch (((Button)sender).Name)
+			switch ((sender as Button).Name)
 			{
 				case "ShowL1_btn":
 					new Lab1Form().Show();
@@ -20,9 +20,9 @@ namespace s4_tp
 				case "ShowL2_btn":
 					new Lab2Form().Show();
 					break;
-					//case "ShowL3_btn":
-					//	new Lab3Form().Show();
-					//	break;
+				case "ShowL3_btn":
+					new Lab3Form().Show();
+					break;
 					//case "ShowL4_btn":
 					//	new Lab4Form().Show();
 					//	break;
