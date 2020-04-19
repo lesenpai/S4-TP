@@ -1,6 +1,6 @@
 ﻿namespace s4_tp
 {
-	partial class MainForm
+	partial class ManagerForm
 	{
 		/// <summary>
 		/// Обязательная переменная конструктора.
@@ -96,7 +96,7 @@
 			this.ShowL5_btn.UseVisualStyleBackColor = true;
 			this.ShowL5_btn.Click += new System.EventHandler(this.ShowFormX_btn_Click);
 			// 
-			// MainForm
+			// ManagerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,7 +107,7 @@
 			this.Controls.Add(this.ShowFTest_btn);
 			this.Controls.Add(this.ShowL2_btn);
 			this.Controls.Add(this.ShowL1_btn);
-			this.Name = "MainForm";
+			this.Name = "ManagerForm";
 			this.Text = "S4. TP. All";
 			this.ResumeLayout(false);
 

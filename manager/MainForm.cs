@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace s4_tp
 {
-	public partial class MainForm : Form
+	public partial class ManagerForm : Form
 	{
-		public MainForm()
+		public ManagerForm()
 		{
 			InitializeComponent();
 		}
