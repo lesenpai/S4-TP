@@ -23,12 +23,13 @@ namespace s4_tp
 				case "ShowL3_btn":
 					new Lab3Form().Show();
 					break;
-					//case "ShowL4_btn":
-					//	new Lab4Form().Show();
-					//	break;
-					//case "ShowL5_btn":
-					//	new Lab5Form().Show();
-					//	break;
+				/*case "ShowL4_btn":
+					new Lab4Form().Show();
+					break;*/
+				case "ShowL5_btn":
+					new Lab5Form().Show();
+					break;
+
 			}
 		}
 	}

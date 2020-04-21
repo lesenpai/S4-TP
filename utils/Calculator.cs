@@ -1,6 +1,11 @@
 ﻿/*
+	(c) 2020
 	Calculator 
 	v1.0
+
+	====================
+
+	HOT-FIX (19.04.20): Prepare(): заменять "--" на "+"
 */
 
 using System;
@@ -74,8 +79,7 @@ namespace calculator
 		*/
 		public string Prepare(string s)
 		{
-			// убираем все пробелы
-			s = s.Replace(" ", "");
+			s = s.Replace(" ", "").Replace("--", "+");
 			if (!IsDotDecimalSeparator)
 				s = s.Replace(".", ",");
 			// убираем внешние скобки

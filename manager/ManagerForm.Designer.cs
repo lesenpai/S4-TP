@@ -78,6 +78,7 @@
 			// 
 			// ShowL4_btn
 			// 
+			this.ShowL4_btn.Enabled = false;
 			this.ShowL4_btn.Location = new System.Drawing.Point(129, 67);
 			this.ShowL4_btn.Name = "ShowL4_btn";
 			this.ShowL4_btn.Size = new System.Drawing.Size(110, 48);

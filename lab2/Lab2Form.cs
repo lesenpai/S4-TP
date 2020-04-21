@@ -15,6 +15,7 @@ namespace s4_tp
         private bool isFileOpen = false,
             isFileSaved = true,
             wasFileSwitched = false;
+        private const int WM_CLOSE = 0x0010;
 
         public Lab2Form()
         {
@@ -23,8 +24,7 @@ namespace s4_tp
         }
         protected override void WndProc(ref Message m)
         {
-            // WM_CLOSE
-            if (m.Msg == 0x0010)
+            if (m.Msg == WM_CLOSE)
             {
                 if (isFileSaved)
                 {
@@ -116,7 +116,7 @@ namespace s4_tp
         {
             SaveAs();
         }
-
+        
         private void TsmiNew_Click(object sender, EventArgs e)
         {
             if (isFileOpen)
@@ -166,7 +166,6 @@ namespace s4_tp
         {
             Open_ofd.ShowDialog();
         }
-
         private void Open_ofd_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
