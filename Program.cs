@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace s4_tp
+namespace S4_TP
 {
 	static class Program
 	{
@@ -16,7 +16,7 @@ namespace s4_tp
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ManagerForm());
+			Application.Run(new LabManagerForm());
 		}
 	}
 }

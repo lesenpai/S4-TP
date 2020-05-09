@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace s4_tp.Properties
+namespace S4_TP.Properties
 {
 
 
