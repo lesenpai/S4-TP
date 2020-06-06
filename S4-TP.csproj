@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{16675AA8-F05B-48BF-BBF9-BB697B4AC739}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>s4_tp</RootNamespace>
-    <AssemblyName>s4-tp</AssemblyName>
+    <RootNamespace>S4_TP</RootNamespace>
+    <AssemblyName>S4-TP</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -58,56 +60,62 @@
     <Compile Include="src\About\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-3\Lab3Form.cs">
+    <Compile Include="src\Lab3\Lab3Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-3\Lab3Form.Designer.cs">
+    <Compile Include="src\Lab3\Lab3Form.Designer.cs">
       <DependentUpon>Lab3Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-4\Pair.cs" />
-    <Compile Include="src\Lab-4\Lab4Data.cs" />
-    <Compile Include="src\Lab-4\Lab4Form.cs">
+    <Compile Include="src\Lab4\Pair.cs" />
+    <Compile Include="src\Lab4\Lab4Data.cs" />
+    <Compile Include="src\Lab4\Lab4Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-4\Lab4Form.Designer.cs">
+    <Compile Include="src\Lab4\Lab4Form.Designer.cs">
       <DependentUpon>Lab4Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-4\ValidationResult.cs" />
-    <Compile Include="src\Lab-5\Lab5Form.cs">
+    <Compile Include="src\Lab4\ValidationResult.cs" />
+    <Compile Include="src\Lab5\Lab5Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-5\Lab5Form.Designer.cs">
+    <Compile Include="src\Lab5\Lab5Form.Designer.cs">
       <DependentUpon>Lab5Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-5\SizeSetterForm.cs">
+    <Compile Include="src\Lab5\SizeSetterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-5\SizeSetterForm.Designer.cs">
+    <Compile Include="src\Lab5\SizeSetterForm.Designer.cs">
       <DependentUpon>SizeSetterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-6\Lab6Form.cs">
+    <Compile Include="src\Lab6\Lab6Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-6\Lab6Form.Designer.cs">
+    <Compile Include="src\Lab6\Lab6Form.Designer.cs">
       <DependentUpon>Lab6Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-7\Lab7Form.cs">
+    <Compile Include="src\Lab7\Lab7Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-7\Lab7Form.Designer.cs">
+    <Compile Include="src\Lab7\Lab7Form.Designer.cs">
       <DependentUpon>Lab7Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Utilis\Calculator.cs" />
-    <Compile Include="src\Lab-1\Lab1Form.cs">
+    <Compile Include="src\Lab8\Lab8Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-1\Lab1Form.Designer.cs">
+    <Compile Include="src\Lab8\Lab8Form.Designer.cs">
+      <DependentUpon>Lab8Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Utilis\Calculator.cs" />
+    <Compile Include="src\Lab1\Lab1Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Lab1\Lab1Form.Designer.cs">
       <DependentUpon>Lab1Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Lab-2\Lab2Form.cs">
+    <Compile Include="src\Lab2\Lab2Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Lab-2\Lab2Form.Designer.cs">
+    <Compile Include="src\Lab2\Lab2Form.Designer.cs">
       <DependentUpon>Lab2Form.cs</DependentUpon>
     </Compile>
     <Compile Include="src\LabManager\LabManagerForm.cs">
@@ -122,20 +130,26 @@
     <EmbeddedResource Include="src\About\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Lab-3\Lab3Form.resx">
+    <EmbeddedResource Include="src\Lab3\Lab3Form.resx">
       <DependentUpon>Lab3Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Lab-4\Lab4Form.resx">
+    <EmbeddedResource Include="src\Lab4\Lab4Form.resx">
       <DependentUpon>Lab4Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Lab-5\Lab5Form.resx">
+    <EmbeddedResource Include="src\Lab5\Lab5Form.resx">
       <DependentUpon>Lab5Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Lab-5\SizeSetterForm.resx">
+    <EmbeddedResource Include="src\Lab5\SizeSetterForm.resx">
       <DependentUpon>SizeSetterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Lab-6\Lab6Form.resx">
+    <EmbeddedResource Include="src\Lab6\Lab6Form.resx">
       <DependentUpon>Lab6Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Lab7\Lab7Form.resx">
+      <DependentUpon>Lab7Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Lab8\Lab8Form.resx">
+      <DependentUpon>Lab8Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\LabManager\LabManagerForm.resx">
       <DependentUpon>LabManagerForm.cs</DependentUpon>

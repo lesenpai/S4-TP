@@ -33,9 +33,11 @@ namespace S4_TP.Lab5
 
 		private const int THICKNESS_MAX = 600,
 						  THICKNESS_DELTA = 10;
+
 		private Point canvas_lmbDownPos,
-			canvas_prevLmbDownPos,
-			canvas_mouseMovePos;
+			          canvas_prevLmbDownPos,
+			          canvas_mouseMovePos;
+
 		private Pen pen;
 		// Координаты и размеры кисти
 		private Rectangle penRect;
@@ -67,8 +69,9 @@ namespace S4_TP.Lab5
 			}
 			Text = DEFAULT_FILE_NAME + CAPTURE_RIGHT_SIDE;
 		}
+
 		/*
-			Panel with horisontal scroll on Shift + Mouse Wheel
+			Panel with horisontal scroll on (Shift + Mouse Wheel)
 		*/
 		public class CustomPanel : Panel
 		{
@@ -83,6 +86,7 @@ namespace S4_TP.Lab5
 				else if (IsCtrlDown())
 				{
 					var parent = Parent as Lab5Form;
+
 					if (e.Delta > 0 && parent.thickness < 10)
 					{
 						parent.thickness++;
@@ -99,6 +103,7 @@ namespace S4_TP.Lab5
 					{
 						parent.thickness--;
 					}
+
 					parent.tbThickness.Text = Convert.ToString(parent.thickness);
 #pragma warning disable CS1690 // Доступ к члену в поле класса маршалинга по ссылке может вызвать исключение времени выполнения
 					parent.penRect.Width = parent.penRect.Height = parent.thickness;
@@ -123,17 +128,23 @@ namespace S4_TP.Lab5
 					base.WndProc(ref m);
 					return;
 				}
+
 				var dlg_result = MessageBox.Show("Save file?", APP_NAME, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
 				switch (dlg_result)
 				{
 					case DialogResult.Yes:
-						if(SaveAs())
+						if (SaveAs())
+						{
 							isFileSaved = true;
+						}
 						break;
+
 					case DialogResult.No:
 						break;
+
 					case DialogResult.Cancel:
 						return;
+
 					// If messagebox was closed
 					default:
 						return;
@@ -142,6 +153,7 @@ namespace S4_TP.Lab5
 
 			base.WndProc(ref m);
 		}
+
 		protected override bool ProcessCmdKey(ref Message msg, Keys key_data)
 		{
 			switch (msg.Msg)
@@ -156,6 +168,7 @@ namespace S4_TP.Lab5
 							canvas.Image = _buffer[_bufferIndex];
 							lblBufferIndexValue.Text = _bufferIndex.ToString();
 						}
+
 						return true;
 					}
 					// Ctrl + Z
@@ -167,30 +180,25 @@ namespace S4_TP.Lab5
 							canvas.Image = _buffer[_bufferIndex];
 							lblBufferIndexValue.Text = _bufferIndex.ToString();
 						}
+
 						return true;
 					}
+
 					return base.ProcessCmdKey(ref msg, key_data);
+
 				default:
 					return base.ProcessCmdKey(ref msg, key_data);
 			}
 		}
 
-		private static bool IsKeyDown(System.Windows.Input.Key key)
-		{
-			return System.Windows.Input.Keyboard.IsKeyDown(key);
-		}
-		private static bool IsShiftDown()
-		{
-			return (ModifierKeys & Keys.Shift) == Keys.Shift;
-		}
-		private static bool IsCtrlDown()
-		{
-			return (ModifierKeys & Keys.Control) == Keys.Control;
-		}
-		private static bool IsLMBDown()
-		{
-			return (MouseButtons & MouseButtons.Left) == MouseButtons.Left;
-		}
+		private static bool IsKeyDown(System.Windows.Input.Key key) => System.Windows.Input.Keyboard.IsKeyDown(key);
+		
+		private static bool IsShiftDown() => (ModifierKeys & Keys.Shift) == Keys.Shift;
+		
+		private static bool IsCtrlDown() => (ModifierKeys & Keys.Control) == Keys.Control;
+		
+		private static bool IsLMBDown() => (MouseButtons & MouseButtons.Left) == MouseButtons.Left;
+		
 		private bool Any(params RadioButton[] list)
 		{
 			foreach (var item in list)
@@ -200,6 +208,7 @@ namespace S4_TP.Lab5
 					return true;
 				}
 			}
+
 			return false;
 		}
 
@@ -236,29 +245,30 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief Используется при относительно толстой кисти
+			Используется при относительно толстой кисти
 		*/
 		private void CustomDrawLine(Point start, Point end)
 		{
 			int dist = Math.Max(Math.Abs(start.X - end.X), Math.Abs(start.Y - end.Y));
+
 			if (dist <= 0)
 			{
 				return;
 			}
+
 			int semi_size = (int)Math.Round(thickness / 2f);
 			var g = Graphics.FromImage(canvas.Image);
 			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
 			if (dist == 1)
 			{
 				g.FillEllipse(pen.Brush, start.X - semi_size, start.Y - semi_size, thickness, thickness);
 			}
-
 			else if (dist == 2)
 			{
 				g.FillEllipse(pen.Brush, start.X - semi_size, start.Y - semi_size, thickness, thickness);
 				g.FillEllipse(pen.Brush, end.X - semi_size, end.Y - semi_size, thickness, thickness);
 			}
-
 			else
 			{
 				// В середине - линия с толщиной круга
@@ -278,6 +288,7 @@ namespace S4_TP.Lab5
 					p1.X = start.X - 1;
 					p2.X = end.X + 1;
 				}
+
 				if (start.Y < end.Y)
 				{
 					p1.Y = start.Y + 1;
@@ -323,8 +334,8 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief On Mouse Wheel.
-			\details Ctrl + Mouse Wheel = change %thichkness
+			On Mouse Wheel.
+			@details Ctrl + Mouse Wheel = change %thichkness
 		*/
 		private void Panel_MouseWheel(object sender, MouseEventArgs e)
 		{
@@ -340,6 +351,7 @@ namespace S4_TP.Lab5
 				}
 			}
 		}
+
 		private void BtnColor_Click(object sender, EventArgs e)
 		{
 			if (colorDialog.ShowDialog() == DialogResult.OK)
@@ -357,7 +369,7 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief Заливка
+			Заливка
 			*/
 		private void FloodFill(Bitmap bm, Point pt, Color replacement_color)
 		{
@@ -373,12 +385,15 @@ namespace S4_TP.Lab5
 			{
 				Point temp = pixels.Pop();
 				int y1 = temp.Y;
+
 				while (y1 >= 0 && bm.GetPixel(temp.X, y1) == target_color)
 				{
 					y1--;
 				}
+
 				y1++;
 				bool span_left = false, span_right = false;
+
 				while (y1 < bm.Height && bm.GetPixel(temp.X, y1) == target_color)
 				{
 					bm.SetPixel(temp.X, y1, replacement_color);
@@ -391,6 +406,7 @@ namespace S4_TP.Lab5
 					{
 						span_left = false;
 					}
+
 					if (!span_right && temp.X < bm.Width - 1 && bm.GetPixel(temp.X + 1, y1) == target_color)
 					{
 						pixels.Push(new Point(temp.X + 1, y1));
@@ -403,11 +419,12 @@ namespace S4_TP.Lab5
 					y1++;
 				}
 			}
+
 			canvas.Image = bm;
 		}
 
 		/*
-			\brief On %form Key Up
+			On %form Key Up
 		*/
 		private void Lab5Form_KeyUp(object s, KeyEventArgs e)
 		{
@@ -443,6 +460,7 @@ namespace S4_TP.Lab5
 				{
 					ext = null;
 				}
+
 				ImageFormat img_ft;
 				switch(ext) 
 				{
@@ -456,6 +474,7 @@ namespace S4_TP.Lab5
 						img_ft = ImageFormat.Bmp;
 						break;
 				}
+
 				canvas.Image.Save(_filename, img_ft);
 				return true;
 			}
@@ -510,7 +529,7 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief Создать новый файл
+			Создать новый файл
 			*/
 		private void TsmiNew_Click(object sender, EventArgs e)
 		{
@@ -542,8 +561,10 @@ namespace S4_TP.Lab5
 					{
 						sizeSetterForm = new SizeSetterForm();
 					}
+
 					var size_dlg_res = sizeSetterForm.Result;
 					sizeSetterForm.ShowDialog();
+
 					if (size_dlg_res.State == DialogResult.Yes)
 					{
 						SetCanvas(size_dlg_res);
@@ -560,12 +581,14 @@ namespace S4_TP.Lab5
 				{
 					var size_dlg_res = sizeSetterForm.Result;
 					sizeSetterForm.ShowDialog();
+
 					switch(size_dlg_res.State) 
 					{
 						case DialogResult.Yes:
 							SetCanvas(size_dlg_res);
 							//break;
 							return;
+
 						case DialogResult.Cancel:
 						case DialogResult.None:
 							//return;
@@ -600,7 +623,7 @@ namespace S4_TP.Lab5
 		//
 
 		/*
-			\brief On %canvas Paint
+			On %canvas Paint
 		*/
 		private void Canvas_Paint(object sender, PaintEventArgs e)
 		{
@@ -608,14 +631,18 @@ namespace S4_TP.Lab5
 			{
 				e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 			}
+
 			e.Graphics.DrawEllipse(Pens.Black, penRect.X, penRect.Y, penRect.Width, penRect.Height);
+
 			if (Any(rbRectangle, rbEllipse) && IsLMBDown())
 			{
 				pen.Width = thickness;
-				var rect = new Rectangle(Math.Min(canvas_lmbDownPos.X, canvas_mouseMovePos.X),
+				var rect = new Rectangle(
+					Math.Min(canvas_lmbDownPos.X, canvas_mouseMovePos.X),
 					Math.Min(canvas_lmbDownPos.Y, canvas_mouseMovePos.Y),
 					Math.Abs(canvas_lmbDownPos.X - canvas_mouseMovePos.X),
 					Math.Abs(canvas_lmbDownPos.Y - canvas_mouseMovePos.Y));
+
 				if (rbRectangle.Checked)
 				{
 					e.Graphics.DrawRectangle(pen, rect);
@@ -628,7 +655,7 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief On %canvas Mouse Down
+			On %canvas Mouse Down
 		*/
 		private void Canvas_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -640,7 +667,7 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief On %canvas Mouse Move
+			On %canvas Mouse Move
 		*/
 		private void Canvas_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -663,10 +690,12 @@ namespace S4_TP.Lab5
 				{
 					pen.Width = thickness;
 					var g = Graphics.FromImage(canvas.Image);
+
 					if (cbSmooth.Checked)
 					{
 						g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 					}
+
 					if (thickness > 4)
 					{
 						CustomDrawLine(canvas_prevLmbDownPos_isActive ? canvas_prevLmbDownPos : new Point(e.X, e.Y), new Point(e.X, e.Y));
@@ -675,19 +704,19 @@ namespace S4_TP.Lab5
 					{
 						g.DrawLine(pen, canvas_prevLmbDownPos_isActive ? canvas_prevLmbDownPos : new Point(e.X, e.Y), new Point(e.X, e.Y));
 					}
+
 					canvas_prevLmbDownPos = new Point(e.X, e.Y);
+
 					if (!canvas_prevLmbDownPos_isActive)
 					{
 						canvas_prevLmbDownPos_isActive = true;
 					}
 				}
 			}
+
 			canvas.Invalidate();
 		}
 
-		/*
-			\brief On %canvas Mouse Up
-			*/
 		private void Canvas_MouseUp(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left && !IsCtrlDown())
@@ -698,6 +727,7 @@ namespace S4_TP.Lab5
 				{
 					g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 				}
+
 				// -- Draw
 				// Brush
 				if (rbBrush.Checked)
@@ -739,11 +769,13 @@ namespace S4_TP.Lab5
 						}
 					}
 				}
+
 				// Buffer's stuff
 				if (_bufferIndex < _buffer.Count - 1 && _buffer.Count > 1)
 				{
 					_buffer.RemoveRange(_bufferIndex + 1, _buffer.Count - _bufferIndex - 1);
 				}
+
 				_buffer.Add(new Bitmap(canvas.Image));
 				_bufferIndex++;
 				lblBufferSizeValue.Text = _buffer.Count.ToString();
@@ -752,7 +784,7 @@ namespace S4_TP.Lab5
 		}
 
 		/*
-			\brief Предотвращает выход картинки за границы панели
+			Предотвращает выход картинки за границы панели
 			*/
 		private void Canvas_LocationChanged(object s, EventArgs e)
 		{
@@ -767,6 +799,7 @@ namespace S4_TP.Lab5
 			{
 				canvas.Location = new Point(pnlCanvas.Width - limit, canvas.Location.Y);
 			}
+
 			// Top
 			if (canvas.Location.Y < limit - canvas.Height)
 			{
@@ -781,9 +814,6 @@ namespace S4_TP.Lab5
 	}
 	public static class ListExtension
 	{
-		public static T Last<T>(this List<T> list)
-		{
-			return list[list.Count - 1];
-		}
+		public static T Last<T>(this List<T> list) => list[list.Count - 1];
 	}
 }

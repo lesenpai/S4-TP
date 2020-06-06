@@ -61,9 +61,9 @@ namespace S4_TP.Lab3
 			// Options_MS
 			// 
 			this.Options_MS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.File_TSMI,
-			this.View_TSMI,
-			this.About_TSMI});
+            this.File_TSMI,
+            this.View_TSMI,
+            this.About_TSMI});
 			this.Options_MS.Location = new System.Drawing.Point(0, 0);
 			this.Options_MS.Name = "Options_MS";
 			this.Options_MS.Size = new System.Drawing.Size(698, 24);
@@ -72,11 +72,11 @@ namespace S4_TP.Lab3
 			// File_TSMI
 			// 
 			this.File_TSMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.tsmiNew,
-			this.Open_TSMI,
-			this.Save_TSMI,
-			this.SaveAs_TSMI,
-			this.Exit_TSMI});
+            this.tsmiNew,
+            this.Open_TSMI,
+            this.Save_TSMI,
+            this.SaveAs_TSMI,
+            this.Exit_TSMI});
 			this.File_TSMI.Name = "File_TSMI";
 			this.File_TSMI.Size = new System.Drawing.Size(37, 20);
 			this.File_TSMI.Text = "File";
@@ -119,11 +119,11 @@ namespace S4_TP.Lab3
 			// View_TSMI
 			// 
 			this.View_TSMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.BackgroundColor_TSMI,
-			this.SelectionFont_TSMI,
-			this.SelectionBackgroundColor_TSMI,
-			this.tsmiSelectionTextColor,
-			this.Font_TSMI});
+            this.BackgroundColor_TSMI,
+            this.SelectionFont_TSMI,
+            this.SelectionBackgroundColor_TSMI,
+            this.tsmiSelectionTextColor,
+            this.Font_TSMI});
 			this.View_TSMI.Name = "View_TSMI";
 			this.View_TSMI.Size = new System.Drawing.Size(44, 20);
 			this.View_TSMI.Text = "View";
@@ -173,9 +173,9 @@ namespace S4_TP.Lab3
 			// rtb
 			// 
 			this.rtb.AcceptsTab = true;
-			this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.rtb.ContextMenuStrip = this.ContextMS;
 			this.rtb.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.rtb.Location = new System.Drawing.Point(0, 24);
@@ -189,30 +189,30 @@ namespace S4_TP.Lab3
 			// ContextMS
 			// 
 			this.ContextMS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.Copy_TSMI,
-			this.Cut_TSMI,
-			this.Paste_TSMI});
+            this.Copy_TSMI,
+            this.Cut_TSMI,
+            this.Paste_TSMI});
 			this.ContextMS.Name = "ContextMS";
-			this.ContextMS.Size = new System.Drawing.Size(103, 70);
+			this.ContextMS.Size = new System.Drawing.Size(181, 92);
 			// 
 			// Copy_TSMI
 			// 
 			this.Copy_TSMI.Name = "Copy_TSMI";
-			this.Copy_TSMI.Size = new System.Drawing.Size(102, 22);
+			this.Copy_TSMI.Size = new System.Drawing.Size(180, 22);
 			this.Copy_TSMI.Text = "Copy";
 			this.Copy_TSMI.Click += new System.EventHandler(this.Copy_TSMI_Click);
 			// 
 			// Cut_TSMI
 			// 
 			this.Cut_TSMI.Name = "Cut_TSMI";
-			this.Cut_TSMI.Size = new System.Drawing.Size(102, 22);
+			this.Cut_TSMI.Size = new System.Drawing.Size(180, 22);
 			this.Cut_TSMI.Text = "Cut";
 			this.Cut_TSMI.Click += new System.EventHandler(this.Cut_TSMI_Click);
 			// 
 			// Paste_TSMI
 			// 
 			this.Paste_TSMI.Name = "Paste_TSMI";
-			this.Paste_TSMI.Size = new System.Drawing.Size(102, 22);
+			this.Paste_TSMI.Size = new System.Drawing.Size(180, 22);
 			this.Paste_TSMI.Text = "Paste";
 			this.Paste_TSMI.Click += new System.EventHandler(this.Paste_TSMI_Click);
 			// 
@@ -242,6 +242,7 @@ namespace S4_TP.Lab3
 			this.ContextMS.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 
 		#endregion

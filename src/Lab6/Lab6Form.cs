@@ -1,29 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.IO;
 
 namespace S4_TP.Lab6
 {
-	/* 
-		--- Key Bindings ---
 
-		...
-	*/
 	public partial class Lab6Form : Form
 	{
+		public class CustomPanel : Panel
+		{
+			protected override void OnMouseWheel(MouseEventArgs e)
+			{
+				if (VScroll && IsShiftDown())
+				{
+					VScroll = false;
+					base.OnMouseWheel(e);
+					VScroll = true;
+				}
+				else
+				{
+					base.OnMouseWheel(e);
+				}
+			}
+		}
+
 		/* Flags */
 		private bool isFileOpen = false,
 					 isFileSaved = true;
-
-		//private string fileName;
 
 		/* UI constants */
 		private const string APP_NAME = "Lab-6: Grayscaler";
@@ -52,40 +58,16 @@ namespace S4_TP.Lab6
 			return (ModifierKeys & Keys.Shift) == Keys.Shift;
 		}
 
-		public class CustomPanel : Panel
-		{
-			protected override void OnMouseWheel(MouseEventArgs e)
-			{
-				if (VScroll && IsShiftDown())
-				{
-					VScroll = false;
-					base.OnMouseWheel(e);
-					VScroll = true;
-				}
-				else
-				{
-					base.OnMouseWheel(e);
-				}
-			}
-		}
-
 		private void Btn_blackWhite_Click(object sender, EventArgs e)
 		{
 			if(!PB_canvas.Enabled)
 			{
 				return;
 			}
-			/* Если нужно сохранить полученный файл *//*
-			if(isFileOpen && !isFileSaved) 
-			{
-				var question_save_result = MessageBox.Show("Есть не сохранённые изменения. Сохранить?", APP_NAME,
-					            MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-				if(question_save_result == DialogResult.OK) 
-				{
-					SaveAs();
-				}
-			}*/
+
 			PB_canvas.Image = BlackWhiteBitmap((Bitmap)PB_canvas.Image);
+			// Flags
+			isFileSaved = false;
 		}
 
 		private Bitmap BlackWhiteBitmap(Bitmap src)
@@ -122,7 +104,9 @@ namespace S4_TP.Lab6
 				}
 				PB_BWConvertProgress.Increment(1);
 			}
+			// UI
 			PB_BWConvertProgress.Hide();
+
 			return res;
 		}
 
@@ -139,8 +123,7 @@ namespace S4_TP.Lab6
 				return;
 			}
 
-			string file_ext;
-			file_ext = Path.GetExtension(SFD_dialog.FileName);
+			string file_ext = Path.GetExtension(SFD_dialog.FileName);
 			ImageFormat img_ft;
 			switch(file_ext) 
 			{
@@ -166,6 +149,16 @@ namespace S4_TP.Lab6
 
 		private void TSMI_file_open_Click(object sender, EventArgs e)
 		{
+			/* Если есть не сохранённые изменения */
+			if (isFileOpen && !isFileSaved)
+			{
+				var question_save_result = MessageBox.Show("Есть не сохранённые изменения. Сохранить?", APP_NAME,
+								MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+				if (question_save_result == DialogResult.OK)
+				{
+					SaveAs();
+				}
+			}
 			OFD_dialog.ShowDialog();
 		}
 
