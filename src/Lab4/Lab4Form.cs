@@ -169,6 +169,7 @@ namespace S4_TP.Lab4
 				{
 					var data = new Lab4Data();
 					const int x_col_index = 1, f_col_index = 2;
+
 					foreach(DataGridViewRow row in table.Rows) 
 					{
 						data.Add(
@@ -176,6 +177,7 @@ namespace S4_TP.Lab4
 							double.Parse(row.Cells[f_col_index].Value.ToString())
 							);
 					}
+
 					new XmlSerializer(data.GetType()).Serialize(writer, data);
 				}
 			}

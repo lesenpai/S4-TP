@@ -58,8 +58,11 @@ namespace S4_TP.Lab8
 			// Если есть не сохранённые изменения
 			if (isFileOpen && !isFileSaved)
 			{
-				var question_save_result = MessageBox.Show("Есть не сохранённые изменения. Сохранить?", APP_NAME,
-														   MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+				var question_save_result = MessageBox.Show(
+					"Есть не сохранённые изменения. Сохранить?",
+					APP_NAME,
+					MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
 				if (question_save_result == DialogResult.OK)
 				{
 					SaveAs();
@@ -181,6 +184,7 @@ namespace S4_TP.Lab8
 			}
 
 			Bitmap res = (Bitmap)src.Clone();
+			
 			if (k == 1)
 			{ 
 				return res;
@@ -188,9 +192,12 @@ namespace S4_TP.Lab8
 
 			k = (100f + k) / 100f;
 			k *= k;
-			BitmapData data = res.LockBits(new Rectangle(0, 0, res.Width, res.Height),
-										   ImageLockMode.ReadWrite,
-										   PixelFormat.Format32bppArgb);
+
+			BitmapData data = res.LockBits(
+				new Rectangle(0, 0, res.Width, res.Height),
+				ImageLockMode.ReadWrite,
+				PixelFormat.Format32bppArgb);
+
 			IntPtr ptr = data.Scan0;
 			int bytes_count = Math.Abs(data.Stride) * data.Height;
 			byte[] rgb_values = new byte[bytes_count];

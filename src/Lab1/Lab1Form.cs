@@ -12,10 +12,7 @@ namespace S4_TP.Lab1
 		{
 			InitializeComponent();
 		}
-		private void OnGotFocus(object sender, EventArgs e)
-		{
 
-		}
 		private void F1_form_Load(object sender, EventArgs e)
 		{
 			KeyPreview = true;
@@ -182,7 +179,7 @@ namespace S4_TP.Lab1
 			выражение = Calculator.prepare(выражение)
 			если выражение верно: записать его в результат
 		*/
-		private void WriteToExpr(char ch)
+		private void AppendExpression(char ch)
 		{
 			var expr = Expression_tb;
 			expr.Text += ch;
@@ -213,7 +210,26 @@ namespace S4_TP.Lab1
 
 		private void InsertionButton_Click(object sender, EventArgs e)
 		{
-			WriteToExpr((sender as Button).Text[0]);
+			var button = (Button)sender;
+			string text = "";
+
+			switch (button.Name)
+			{
+				case "Btn_mul":
+					text = "*";
+					break;
+
+				default:
+					text = button.Text;
+					break;
+			}
+
+			AppendExpression(text[0]);
+		}
+
+		private void Btn_clear_Click(object sender, EventArgs e)
+		{
+			Clear();
 		}
 	}
 }

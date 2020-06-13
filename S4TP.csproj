@@ -130,6 +130,9 @@
     <EmbeddedResource Include="src\About\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\Lab1\Lab1Form.resx">
+      <DependentUpon>Lab1Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Lab3\Lab3Form.resx">
       <DependentUpon>Lab3Form.cs</DependentUpon>
     </EmbeddedResource>
